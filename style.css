@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 :root {
     --colorWhite: #CDCBD7;
     --colorOrange: #DA6745;
@@ -55,7 +59,7 @@
     content: "";
     position: absolute;
     bottom: -100px;
-    left: -70px;
+    left: -80px;
     width: 500px;
     height: 500px;
     border-radius: 100%;
