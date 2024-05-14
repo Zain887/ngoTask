@@ -38,30 +38,16 @@ body {
     margin: 0 30px;
 }
 
-.homeImg {
-    position: relative;
-    overflow: hidden;
+a {
+    text-decoration: none !important;
 }
 
-.homeImg::after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 285px;
-    width: 500px;
-    height: 500px;
-    border-radius: 100%;
-    border: 80px solid var(--colorOrange);
-    opacity: 20%;
+.index ul li:hover {
+    background-color: var(--colorDarkOlive) !important;
+    transition-duration: .5s;
+    cursor: pointer;
 }
 
-.homeImg::before {
-    content: "";
-    position: absolute;
-    bottom: -100px;
-    left: -80px;
-    width: 500px;
-    height: 500px;
-    border-radius: 100%;
-    border: 80px solid var(--colorOlive);
+ul li:hover p {
+    color: var(--colorWhite) !important;
 }
