@@ -104,3 +104,10 @@ ul li:hover p {
     background-size: 100%;
     overflow: hidden;
 }
+.box:hover{
+    cursor: pointer;
+    transform-origin: center;
+    transform: scale(1.2);
+    transition-duration: 1s;
+    z-index: 1;
+}
