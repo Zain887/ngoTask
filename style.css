@@ -104,10 +104,36 @@ ul li:hover p {
     background-size: 100%;
     overflow: hidden;
 }
-.box:hover{
+
+.box:hover {
     cursor: pointer;
     transform-origin: center;
     transform: scale(1.2);
     transition-duration: 1s;
     z-index: 1;
+}
+
+.move {
+    animation: moveUDLR 10s 0s infinite alternate-reverse;
+    transform: translateX(0px) translateY(0px);
+}
+
+@keyframes moveUDLR {
+    0% {
+        transform: translateX(-10px) translateY(-10px);
+    }
+
+    50% {
+        transform: translateX(10px) translateY(10px);
+    }
+
+    100% {
+        transform: translateX(-10px) translateY(-10px);
+    }
+}
+
+.investnBox {
+    min-width: 330px;
+    width: 50%;
+    margin: auto;
 }
