@@ -1,0 +1,200 @@
+<div id="navbar-container"></div>
+<div class="container my-5 bg-light p-3 rounded shadow-lg">
+    <h2 class="mb-4">Registration Form</h2>
+    <form id="registrationForm">
+        <div class="mb-3">
+            <label for="img" class="form-label">Upload your Photo:</label>
+            <input type="file" class="form-control" id="img" name="img"
+                onchange="previewFile(this, $('#filePreview'),$('#imgContainer'))">
+            <div class="text-center mt-5" id="imgContainer" style="display: none;">
+                <img id="filePreview" src="" alt="File Preview" width="30%" height="auto">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="mb-3">
+            <label for="fathername" class="form-label">Father's Name:</label>
+            <input type="text" class="form-control" id="fathername" name="fathername"
+                placeholder="Enter your father's name" required>
+        </div>
+        <div class="mb-3">
+            <label for="contact" class="form-label">Contact Number:</label>
+            <input type="text" class="form-control" id="contact" name="contact" placeholder=" Enter your contact number"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City:</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city" required>
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country:</label>
+            <input type="text" class="form-control" id="country" name="country" placeholder="Enter your country"
+                required>
+        </div>
+        <div class="mb-3">
+            <label for="state" class="form-label">State:</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state" required>
+        </div>
+        <div class="mb-3">
+            <label for="enroll" class="form-label">Enroll For:</label>
+            <select class="form-select" id="enroll" name="enroll" required>
+                <option value="" selected disabled>Select an option</option>
+                <option value="scholarship">Scholarship</option>
+                <option value="workshop">Workshop</option>
+                <option value="course">Course</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="fileUpload" class="form-label">Upload Degrees</label>
+            <input type="file" class="form-control" id="fileUpload" name="fileUpload"
+                onchange="validateAndPreviewPDFF(this, $('#filePreview1'))" required>
+            <iframe id="filePreview1" style="display: none; width: 100%; height: 500px;"></iframe>
+        </div>
+        <div class="mb-3">
+            <label for="degrees" class="form-label">Upload Degrees</label>
+            <input type="file" class="form-control" id="degrees" name="degrees"
+                onchange="validateAndPreviewPDFDegree(this, $('#filePreview2'))" required>
+            <iframe id="filePreview2" style="display: none; width: 100%; height: 500px;"></iframe>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="alreadyOffer" name="alreadyOffer" required>
+            <label class="form-check-label" for="alreadyOffer">Already Availed Offer?</label>
+        </div>
+        <div class="mb-3">
+            <label for="scholarshipType" class="form-label">Scholarship Type:</label>
+            <input type="text" class="form-control" id="scholarshipType" name="scholarshipType" required
+                placeholder="Enter scholarship type">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+</div>
+
+<div id="footer"></div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    emailjs.init("Ef_8N2t1to_n-uAzC");
+    $(document).ready(function () {
+        $("#navbar-container").load("navbar.html");
+        $("#footer").load("footer.html");
+
+        $('#registrationForm').submit(function (event) {
+            event.preventDefault();
+
+            var img = $('#img').val().trim();
+            var name = $('#name').val().trim();
+            var fathername = $('#fathername').val().trim();
+            var contact = $('#contact').val().trim();
+            var city = $('#city').val().trim();
+            var country = $('#country').val().trim();
+            var state = $('#state').val().trim();
+            var enroll = $('#enroll').val();
+            var fileUpload = $('#fileUpload').val().trim();
+            var degrees = $('#degrees').val().trim();
+            var alreadyOffer = $('#alreadyOffer').prop('checked') ? 'Yes' : 'No';
+            var scholarshipType = $('#scholarshipType').val().trim();
+
+            if (!img || !name || !fathername || !contact || !city || !country || !state || !enroll || !scholarshipType || !degrees || !fileUpload) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            var formData = {
+                img: img,
+                name: name,
+                fathername: fathername,
+                contact: contact,
+                city: city,
+                country: country,
+                state: state,
+                enroll: enroll,
+                fileUpload: fileUpload,
+                degrees: degrees,
+                alreadyOffer: alreadyOffer,
+                scholarshipType: scholarshipType
+            };
+
+            emailjs.send("service_b3e0eg8", "template_z4wi21k", formData)
+                .then(function (response) {
+                    alert("Email sent successfully");
+                    $('#registrationForm')[0].reset();
+                    alert("Registration details submitted successfully!");
+                }, function (error) {
+                    console.error("Email could not be sent:", error);
+                    alert("Failed to submit registration details. Please try again later.");
+                });
+        });
+    });
+// Function to validate and preview PDF for first input
+function validateAndPreviewPDFF(input, previewElement) {
+    var file = input.files[0];
+    var reader = new FileReader();
+    if (!file || file.type !== 'application/pdf') {
+        alert("Please select a PDF file.");
+        input.value = '';
+        return;
+    }
+    reader.onloadend = function () {
+        previewElement.attr('src', reader.result);
+        previewElement.show();
+    };
+    reader.readAsDataURL(file);
+}
+
+// Function to validate and preview PDF for second input
+function validateAndPreviewPDFDegree(input, previewElement) {
+    var file = input.files[0];
+    var reader = new FileReader();
+    if (!file || file.type !== 'application/pdf') {
+        alert("Please select a PDF file.");
+        input.value = '';
+        return;
+    }
+    reader.onloadend = function () {
+        previewElement.attr('src', reader.result);
+        previewElement.show();
+    };
+    reader.readAsDataURL(file);
+}
+
+// Function to preview image
+function previewFile(input, previewElement, imgContainer) {
+    var file = input.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        if (reader.result !== "") {
+            previewElement.attr('src', reader.result);
+            imgContainer.show();
+        } else {
+            previewElement.hide();
+            imgContainer.hide();
+        }
+    };
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        previewElement.attr('src', "");
+    }
+}
+
+// Add event listener to form submission
+$(document).ready(function() {
+    $('form').submit(function() {
+        // Clear the file inputs
+        $('#fileUpload').val('');
+        $('#fileUploadDegree').val('');
+
+        // Hide the preview elements
+        $('#filePreview').hide();
+        $('#filePreview1').hide();
+        $('#filePreview2').hide();
+
+    });
+});
+
+
+
+
+</script>
