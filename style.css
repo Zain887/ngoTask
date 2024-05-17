@@ -89,6 +89,47 @@ ul li:hover p {
     text-shadow: 0 0 20px;
 }
 
+.formcontainer {
+    min-height: 500px;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-holder {
+    position: relative;
+    min-height: 500px;
+    height: auto;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32%;
+    min-width: 313px;
+}
+
+.step {
+    position: absolute;
+    top: 10%;
+    width: 32%;
+    min-width: 313px;
+    transition: left 0.5s;
+}
+
+.step1 {
+    left: 1%;
+}
+
+.step2 {
+    left: 100%;
+}
+
+.step3 {
+    left: 100%;
+}
+
 .box {
     border-radius: 5% 5% 5% 5%;
     max-width: 350px;
@@ -142,10 +183,11 @@ ul li:hover p {
     margin: auto;
 }
 
-.backcolor{
+.backcolor {
     position: relative;
 }
-.backcolor::after{
+
+.backcolor::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -179,4 +221,7 @@ ul li:hover p {
     z-index: 1;
     background-image: url('images/realistic-neon-lights-background_23-2148907367.avif');
 
+}
+::-webkit-scrollbar{
+    display: none;
 }

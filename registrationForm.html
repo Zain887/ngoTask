@@ -2,72 +2,90 @@
 <div class="container my-5 bg-light p-3 rounded shadow-lg">
     <h2 class="mb-4">Registration Form</h2>
     <form id="registrationForm">
-        <div class="mb-3">
-            <label for="img" class="form-label">Upload your Photo:</label>
-            <input type="file" class="form-control" id="img" name="img"
-                onchange="previewFile(this, $('#filePreview'),$('#imgContainer'))">
-            <div class="text-center mt-5" id="imgContainer" style="display: none;">
-                <img id="filePreview" src="" alt="File Preview" width="30%" height="auto">
+        <div class="btn-group w-100" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-danger" onclick="nextStep(step1)">STEP 1</button>
+            <button type="button" class="btn btn-warning" onclick="nextStep(step2)">STEP 2</button>
+            <button type="button" class="btn btn-success" onclick="nextStep(step3)">STEP 3</button>
+        </div>
+        <div class="overflow-hidden bg-dark formcontainer w-100 p-2">
+            <div class="form-holder">
+                <div class="step1 step" id="step1">
+                    <div class="mb-3">
+                        <label for="img" class="form-label tOrange">Upload your Photo</label>
+                        <input type="file" class="form-control" id="img" name="img"
+                            onchange="previewFile(this, $('#filePreview'),$('#imgContainer'))">
+                        <div class="text-center mt-2" id="imgContainer" style="display: none;">
+                            <img id="filePreview" src="" alt="File Preview" width="30%" height="auto">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label tOrange">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fathername" class="form-label tOrange">Father's Name</label>
+                        <input type="text" class="form-control" id="fathername" name="fathername"
+                            placeholder="Enter your father's name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact" class="form-label tOrange">Contact Number</label>
+                        <input type="text" class="form-control" id="contact" name="contact"
+                            placeholder=" Enter your contact number" required>
+                    </div>
+                </div>
+                <div class="step2 step" id="step2">
+                    <div class="mb-3">
+                        <label for="city" class="form-label tOrange">City</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label tOrange">Country</label>
+                        <input type="text" class="form-control" id="country" name="country"
+                            placeholder="Enter your country" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label tOrange">State</label>
+                        <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="enroll" class="form-label tOrange">Enroll For</label>
+                        <select class="form-select" id="enroll" name="enroll" required>
+                            <option value="" selected disabled>Select an option</option>
+                            <option value="scholarship">Scholarship</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="course">Course</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="step3 step" id="step3">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label tOrange">Upload Degrees</label>
+                        <input type="file" class="form-control" id="fileUpload" name="fileUpload"
+                            onchange="validateAndPreviewPDFF(this, $('#filePreview1'))" required>
+                        <iframe id="filePreview1" style="display: none; width: 100%; height: 500px;"></iframe>
+                    </div>
+                    <div class="mb-3">
+                        <label for="degrees" class="form-label tOrange">Upload Degrees</label>
+                        <input type="file" class="form-control" id="degrees" name="degrees"
+                            onchange="validateAndPreviewPDFDegree(this, $('#filePreview2'))" required>
+                        <iframe id="filePreview2" style="display: none; width: 100%; height: 500px;"></iframe>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="alreadyOffer" name="alreadyOffer" required>
+                        <label class="form-check-label tOrange" for="alreadyOffer">Already Availed Offer?</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="scholarshipType" class="form-label tOrange">Scholarship Type</label>
+                        <input type="text" class="form-control" id="scholarshipType" name="scholarshipType" required
+                            placeholder="Enter scholarship type">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </div>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-        </div>
-        <div class="mb-3">
-            <label for="fathername" class="form-label">Father's Name:</label>
-            <input type="text" class="form-control" id="fathername" name="fathername"
-                placeholder="Enter your father's name" required>
-        </div>
-        <div class="mb-3">
-            <label for="contact" class="form-label">Contact Number:</label>
-            <input type="text" class="form-control" id="contact" name="contact" placeholder=" Enter your contact number"
-                required>
-        </div>
-        <div class="mb-3">
-            <label for="city" class="form-label">City:</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city" required>
-        </div>
-        <div class="mb-3">
-            <label for="country" class="form-label">Country:</label>
-            <input type="text" class="form-control" id="country" name="country" placeholder="Enter your country"
-                required>
-        </div>
-        <div class="mb-3">
-            <label for="state" class="form-label">State:</label>
-            <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state" required>
-        </div>
-        <div class="mb-3">
-            <label for="enroll" class="form-label">Enroll For:</label>
-            <select class="form-select" id="enroll" name="enroll" required>
-                <option value="" selected disabled>Select an option</option>
-                <option value="scholarship">Scholarship</option>
-                <option value="workshop">Workshop</option>
-                <option value="course">Course</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="fileUpload" class="form-label">Upload Degrees</label>
-            <input type="file" class="form-control" id="fileUpload" name="fileUpload"
-                onchange="validateAndPreviewPDFF(this, $('#filePreview1'))" required>
-            <iframe id="filePreview1" style="display: none; width: 100%; height: 500px;"></iframe>
-        </div>
-        <div class="mb-3">
-            <label for="degrees" class="form-label">Upload Degrees</label>
-            <input type="file" class="form-control" id="degrees" name="degrees"
-                onchange="validateAndPreviewPDFDegree(this, $('#filePreview2'))" required>
-            <iframe id="filePreview2" style="display: none; width: 100%; height: 500px;"></iframe>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="alreadyOffer" name="alreadyOffer" required>
-            <label class="form-check-label" for="alreadyOffer">Already Availed Offer?</label>
-        </div>
-        <div class="mb-3">
-            <label for="scholarshipType" class="form-label">Scholarship Type:</label>
-            <input type="text" class="form-control" id="scholarshipType" name="scholarshipType" required
-                placeholder="Enter scholarship type">
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
 </div>
 
@@ -75,6 +93,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
+    let step1 = document.getElementById('step1');
+    let step2 = document.getElementById('step2');
+    let step3 = document.getElementById('step3');
+
+    function nextStep(step) {
+        step.style.left = '1%';
+
+        if (step !== step1) {
+            step1.style.left = '-100%';
+        }
+        if (step !== step2) {
+            step2.style.left = '-100%';
+        }
+        if (step !== step3) {
+            step3.style.left = '-100%';
+        }
+    }
+
     emailjs.init("Ef_8N2t1to_n-uAzC");
     $(document).ready(function () {
         $("#navbar-container").load("navbar.html");
@@ -127,74 +163,61 @@
                 });
         });
     });
-// Function to validate and preview PDF for first input
-function validateAndPreviewPDFF(input, previewElement) {
-    var file = input.files[0];
-    var reader = new FileReader();
-    if (!file || file.type !== 'application/pdf') {
-        alert("Please select a PDF file.");
-        input.value = '';
-        return;
-    }
-    reader.onloadend = function () {
-        previewElement.attr('src', reader.result);
-        previewElement.show();
-    };
-    reader.readAsDataURL(file);
-}
-
-// Function to validate and preview PDF for second input
-function validateAndPreviewPDFDegree(input, previewElement) {
-    var file = input.files[0];
-    var reader = new FileReader();
-    if (!file || file.type !== 'application/pdf') {
-        alert("Please select a PDF file.");
-        input.value = '';
-        return;
-    }
-    reader.onloadend = function () {
-        previewElement.attr('src', reader.result);
-        previewElement.show();
-    };
-    reader.readAsDataURL(file);
-}
-
-// Function to preview image
-function previewFile(input, previewElement, imgContainer) {
-    var file = input.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        if (reader.result !== "") {
-            previewElement.attr('src', reader.result);
-            imgContainer.show();
-        } else {
-            previewElement.hide();
-            imgContainer.hide();
+    function validateAndPreviewPDFF(input, previewElement) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        if (!file || file.type !== 'application/pdf') {
+            alert("Please select a PDF file.");
+            input.value = '';
+            return;
         }
-    };
-    if (file) {
+        reader.onloadend = function () {
+            previewElement.attr('src', reader.result);
+            previewElement.show();
+        };
         reader.readAsDataURL(file);
-    } else {
-        previewElement.attr('src', "");
     }
-}
+    function validateAndPreviewPDFDegree(input, previewElement) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        if (!file || file.type !== 'application/pdf') {
+            alert("Please select a PDF file.");
+            input.value = '';
+            return;
+        }
+        reader.onloadend = function () {
+            previewElement.attr('src', reader.result);
+            previewElement.show();
+        };
+        reader.readAsDataURL(file);
+    }
+    function previewFile(input, previewElement, imgContainer) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            if (reader.result !== "") {
+                previewElement.attr('src', reader.result);
+                imgContainer.show();
+            } else {
+                previewElement.hide();
+                imgContainer.hide();
+            }
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            previewElement.attr('src', "");
+        }
+    }
+    $(document).ready(function () {
+        $('form').submit(function () {
+            $('#fileUpload').val('');
+            $('#fileUploadDegree').val('');
+            $('#filePreview').hide();
+            $('#filePreview1').hide();
+            $('#filePreview2').hide();
 
-// Add event listener to form submission
-$(document).ready(function() {
-    $('form').submit(function() {
-        // Clear the file inputs
-        $('#fileUpload').val('');
-        $('#fileUploadDegree').val('');
-
-        // Hide the preview elements
-        $('#filePreview').hide();
-        $('#filePreview1').hide();
-        $('#filePreview2').hide();
-
+        });
     });
-});
-
-
-
 
 </script>
