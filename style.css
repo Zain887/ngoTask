@@ -100,8 +100,9 @@ ul li:hover p {
     box-sizing: border-box;
     box-shadow: 0px 0px 20px var(--colorOlive);
     position: relative;
-    background-image: url('images/backgroundBlue.svg');
-    background-size: 100%;
+    background-image: url('images/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     overflow: hidden;
 }
 
@@ -111,6 +112,9 @@ ul li:hover p {
     transform: scale(1.2);
     transition-duration: 1s;
     z-index: 1;
+    background-image: url('images/backb.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .move {
@@ -173,4 +177,6 @@ ul li:hover p {
     transform: scale(1.2);
     transition-duration: 1s;
     z-index: 1;
+    background-image: url('images/realistic-neon-lights-background_23-2148907367.avif');
+
 }
